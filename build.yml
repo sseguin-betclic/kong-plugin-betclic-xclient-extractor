@@ -1,0 +1,11 @@
+docker:
+  default:
+    docker_compose_files: "./docker-compose.yml"  #required  Docker file. Can be list separate with ";"
+
+packages:
+  default:
+    name: "kong.plugin.betclic.xclient.extractor"  #required
+
+directories:
+  default:
+    base_dir: "src/"

@@ -1,0 +1,22 @@
+_format_version: "1.1"
+
+services:
+- name : echoService
+  url: https://l1wf1ateai.execute-api.eu-west-3.amazonaws.com/dev/mockup
+  routes:
+   - name: echo_request
+     paths: [/echo]
+     methods: [GET]
+     plugins:
+     - name: betclic-token-validator
+       config:
+         forward_jwt_to_upstream: true
+         enable_token_extraction_rules: true
+         token_header_name: Authorization
+         dynamic_service_path: /dev/mockup?{userid}
+         claims_to_headers_map:
+           iss: x-license
+         claims_to_uri_map:
+           sub: userid
+         iat_slack: 5000000000000
+
